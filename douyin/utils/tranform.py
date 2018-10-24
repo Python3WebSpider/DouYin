@@ -1,33 +1,21 @@
-import json
-from douyin.structure import Video, User
-import dateparser
-
-
-def parse_datetime(string):
-    """
-    parse string to datetime safely
-    :param string: str to parse
-    :return: datetime
-    """
-    if not string:
-        return None
-    return dateparser.parse(str(string))
-
-
-def first(array):
-    """
-    get first element of list or None
-    :param array:
-    :return:
-    """
-    if isinstance(array, list) and len(array) > 1:
-        return array[0]
-    return None
+from douyin.structure import Video, User, Music
+from douyin.utils.common import first, parse_datetime
 
 
 def get_video_url(array):
     """
     get video url from list
+    :param array:
+    :return:
+    """
+    if isinstance(array, list) and len(array) > 1:
+        return array[-1]
+    return None
+
+
+def get_music_url(array):
+    """
+    get music url from list
     :param array:
     :return:
     """
@@ -53,9 +41,10 @@ def data_to_video(data):
     create_time = parse_datetime(data.get('create_time'))
     share_url = data.get('share_url')
     ratio = data.get('video', {}).get('ratio')
-    cover = first(data.get('video', {}).get('origin_cover', {}).get('url_list'))
+    cover_url = first(data.get('video', {}).get('origin_cover', {}).get('url_list'))
     play_url = get_video_url(data.get('video', {}).get('play_addr', {}).get('url_list'))
     author = data_to_user(data.get('author', {}))
+    music = data_to_music(data.get('music', {}))
     return Video(
         id=id,
         desc=desc,
@@ -67,17 +56,41 @@ def data_to_video(data):
         create_time=create_time,
         share_url=share_url,
         ratio=ratio,
-        cover=cover,
+        cover_url=cover_url,
         play_url=play_url,
-        author=author
+        author=author,
+        music=music
     )
 
 
 def data_to_music(data):
-    pass
+    """
+    transfer data to music object
+    :param data:
+    :return:
+    """
+    id = data.get('mid')
+    name = data.get('title')
+    play_url = get_music_url(data.get('play_url', {}).get('url_list', []))
+    owner_id = data.get('owner_id')
+    owner_name = data.get('owner_nickname')
+    cover_url = first(data.get('cover_large', {}).get('url_list', []))
+    return Music(
+        id=id,
+        name=name,
+        play_url=play_url,
+        owner_id=owner_id,
+        owner_name=owner_name,
+        cover_url=cover_url
+    )
 
 
 def data_to_user(data):
+    """
+    transfer data to user object
+    :param data:
+    :return:
+    """
     alias = data.get('unique_id') or data.get('short_id')
     id = data.get('uid')
     name = data.get('nickname')

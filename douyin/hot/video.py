@@ -13,7 +13,10 @@ def video():
     # process json data
     active_time = parse_datetime(result.get('active_time'))
     video_list = result.get('aweme_list', [])
-    data = [{'item': data_to_video(item.get('aweme_info')),
-             'hot_value': item.get('hot_value')} for item in video_list]
+    videos = []
+    for item in video_list:
+        video = data_to_video(item.get('aweme_info'))
+        video.hot_count = item.get('hot_value')
+        videos.append(video)
     # construct HotVideo object and return
-    return HotVideo(active_time=active_time, data=data)
+    return HotVideo(active_time=active_time, data=videos)

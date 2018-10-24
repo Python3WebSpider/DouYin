@@ -21,4 +21,10 @@ search_video = douyin.hot.video()
 # print(search_result)
 
 # print(search_result)
-print(search_video)
+# print(search_video)
+
+videos = search_video.data
+for video in videos:
+    print(video)
+    print(video.author)
+    print(video.music)
