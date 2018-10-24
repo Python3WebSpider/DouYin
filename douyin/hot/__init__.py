@@ -1,6 +1,5 @@
 from douyin.hot.search import search
 from douyin.hot.video import video
-import requests
-
-
+from douyin.hot.energy import energy
+from douyin.hot.music import music
 
