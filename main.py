@@ -1,31 +1,21 @@
-# from douyin.hot import search
+#!pip install douyin
 
 import douyin
 
-# result = search()
-# print(result)
-#
-# print(result.data)
-
-# search_result = douyin.hot.search()
+# HotVideo
 search_video = douyin.hot.video()
-# search_energy = douyin.hot.energy()
-# print(search_energy)
-
-# search_energy = douyin.hot.energy()
-# print(se)
-
-# search_music = douyin.hot.music()
-# print(search_music)
-
-# print(search_result)
-
-# print(search_result)
-# print(search_video)
-
+# video objects
 videos = search_video.data
+# print every video
 for video in videos:
     print(video)
     print(video.author)
     print(video.music)
     print(video.address)
+
+# define handler and specify folder
+handler = douyin.handler.FileHandler(folder='./downloads')
+# define downloader
+downloader = douyin.downloader.VideoDownloader([handler])
+# download videos
+downloader.download(videos)
