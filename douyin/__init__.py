@@ -1,3 +1,3 @@
 import douyin.hot
-import douyin.handler
-import douyin.downloader
+import douyin.handlers
+import douyin.downloaders

@@ -1,5 +1,5 @@
 from douyin.config import hot_energy_url
-from douyin.structure import HotEnergy
+from douyin.structures import HotEnergy
 from douyin.utils import fetch
 
 

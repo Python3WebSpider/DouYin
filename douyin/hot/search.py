@@ -1,5 +1,5 @@
 from douyin.config import hot_search_url
-from douyin.structure import HotSearch
+from douyin.structures import HotSearch
 from douyin.utils import fetch
 
 

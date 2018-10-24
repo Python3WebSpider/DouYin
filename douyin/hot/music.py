@@ -1,5 +1,5 @@
 from douyin.config import hot_music_url
-from douyin.structure import HotMusic
+from douyin.structures import HotMusic
 from douyin.utils import fetch
 
 # todo

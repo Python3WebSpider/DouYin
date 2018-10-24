@@ -1,4 +1,4 @@
-from douyin.structure import Video, User, Music, Address
+from douyin.structures import Video, User, Music, Address
 from douyin.utils.common import first, parse_datetime
 
 

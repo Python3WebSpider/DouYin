@@ -1,5 +1,5 @@
-from douyin.structure import *
-from douyin.handler import Handler
+from douyin.structures import *
+from douyin.handlers import Handler
 from tqdm import tqdm
 
 

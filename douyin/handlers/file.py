@@ -1,7 +1,7 @@
 from os.path import join, exists
 from os import makedirs
 import requests
-from douyin.handler import Handler
+from douyin.handlers import Handler
 
 
 class FileHandler(Handler):
