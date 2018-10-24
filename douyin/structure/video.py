@@ -17,4 +17,9 @@ class Video():
         self.cover = kwargs.get('cover')
         self.address = kwargs.get('address')
     
-    # def
+    def __repr__(self):
+        """
+        str of Video
+        :return: str
+        """
+        return '<Video: %s, %s>' % (self.id, self.desc[:10])
