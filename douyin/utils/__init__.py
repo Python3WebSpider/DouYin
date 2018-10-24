@@ -1,0 +1,1 @@
+from douyin.utils.fetch import fetch
