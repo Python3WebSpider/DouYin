@@ -8,7 +8,7 @@ def search():
     get hot search result
     :return: HotSearch object
     """
-    result = fetch(hot_search_url, verify=False)
+    result = fetch(hot_search_url)
     # process json data
     active_time = result.get('data', {}).get('active_time')
     word_list = result.get('data', {}).get('word_list', [])
