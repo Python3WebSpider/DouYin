@@ -28,3 +28,4 @@ for video in videos:
     print(video)
     print(video.author)
     print(video.music)
+    print(video.address)

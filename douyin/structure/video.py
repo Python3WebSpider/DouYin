@@ -20,7 +20,7 @@ class Video():
     
     def __repr__(self):
         """
-        str of Video
+        video to str
         :return: str
         """
         return '<Video: <%s, %s>>' % (self.id, self.desc[:10].strip())

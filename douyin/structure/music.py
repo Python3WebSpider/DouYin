@@ -9,4 +9,8 @@ class Music(object):
         self.owner_name = kwargs.get('owner_name')
     
     def __repr__(self):
+        """
+        music to str
+        :return:
+        """
         return '<Music: <%s, %s>>' % (self.id, self.name)

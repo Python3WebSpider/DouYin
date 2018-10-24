@@ -3,6 +3,8 @@ from douyin.structure import HotEnergy
 from douyin.utils import fetch
 
 
+# todo
+
 def energy():
     """
     get hot energy result

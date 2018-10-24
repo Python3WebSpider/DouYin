@@ -11,3 +11,10 @@ class Address():
         self.postal_code = kwargs.get('postal_code')
         self.longitude = kwargs.get('longitude')
         self.latitude = kwargs.get('latitude')
+    
+    def __repr__(self):
+        """
+        address to str
+        :return:
+        """
+        return '<Address: <%s, %s>>' % (self.id, self.place)
