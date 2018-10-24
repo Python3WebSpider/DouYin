@@ -1,8 +1,20 @@
 class User(object):
     
     def __init__(self, **kwargs):
-        
         self.id = kwargs.get('id')
         self.gender = kwargs.get('gender')
-        self.name = kwargs.get('nickname')
-        
+        self.name = kwargs.get('name')
+        self.create_time = kwargs.get('create_time')
+        self.birthday = kwargs.get('birthday')
+        self.sign = kwargs.get('sign')
+        self.alias = kwargs.get('alias')
+        self.avatar = kwargs.get('avatar')
+        self.verify = kwargs.get('verify')
+        self.verify_info = kwargs.get('verify_info')
+    
+    def __repr__(self):
+        """
+        user to str
+        :return:
+        """
+        return '<User: <%s, %s>>' % (self.alias, self.name)

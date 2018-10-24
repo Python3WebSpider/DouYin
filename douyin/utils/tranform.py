@@ -1,5 +1,5 @@
 import json
-from douyin.structure import Video
+from douyin.structure import Video, User
 import dateparser
 
 
@@ -54,7 +54,8 @@ def data_to_video(data):
     share_url = data.get('share_url')
     ratio = data.get('video', {}).get('ratio')
     cover = first(data.get('video', {}).get('origin_cover', {}).get('url_list'))
-    video_url = get_video_url(data.get('video', {}).get('play_addr', {}).get('url_list'))
+    play_url = get_video_url(data.get('video', {}).get('play_addr', {}).get('url_list'))
+    author = data_to_user(data.get('author', {}))
     return Video(
         id=id,
         desc=desc,
@@ -67,5 +68,35 @@ def data_to_video(data):
         share_url=share_url,
         ratio=ratio,
         cover=cover,
-        video_url=video_url
+        play_url=play_url,
+        author=author
+    )
+
+
+def data_to_music(data):
+    pass
+
+
+def data_to_user(data):
+    alias = data.get('unique_id') or data.get('short_id')
+    id = data.get('uid')
+    name = data.get('nickname')
+    sign = data.get('signature')
+    avatar = first(data.get('avatar_larger', {}).get('url_list', []))
+    gender = data.get('gender')
+    birthday = data.get('birthday')
+    create_time = parse_datetime(data.get('create_time'))
+    verify = bool(data.get('custom_verify').strip())
+    verify_info = data.get('custom_verify').strip()
+    return User(
+        id=id,
+        alias=alias,
+        name=name,
+        sign=sign,
+        avatar=avatar,
+        gender=gender,
+        verify=verify,
+        verify_info=verify_info,
+        create_time=create_time,
+        birthday=birthday
     )

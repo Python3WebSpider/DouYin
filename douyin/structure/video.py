@@ -8,7 +8,7 @@ class Video():
         self.like_count = kwargs.get('like_count')
         self.comment_count = kwargs.get('comment_count')
         self.share_count = kwargs.get('share_count')
-        self.video_url = kwargs.get('video_url')
+        self.play_url = kwargs.get('play_url')
         self.is_ads = kwargs.get('is_ads') or False
         self.duration = kwargs.get('duration')
         self.create_time = kwargs.get('create_time')
@@ -22,4 +22,4 @@ class Video():
         str of Video
         :return: str
         """
-        return '<Video: %s, %s>' % (self.id, self.desc[:10])
+        return '<Video: <%s, %s>, Author: %s>' % (self.id, self.desc[:10].strip(), self.author)
