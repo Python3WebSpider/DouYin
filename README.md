@@ -12,9 +12,7 @@ pip3 install douyin
 
 Here is the sample code:
 
-```
-#!pip install douyin
-
+```python
 import douyin
 
 # HotVideo
