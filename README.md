@@ -29,9 +29,9 @@ for video in videos:
     print(video.address)
 
 # define handler and specify folder
-handler = douyin.handler.FileHandler(folder='./downloads')
+handler = douyin.handlers.FileHandler(folder='./downloads')
 # define downloader
-downloader = douyin.downloader.VideoDownloader([handler])
+downloader = douyin.downloaders.VideoDownloader([handler])
 # download videos
 downloader.download(videos)
 
