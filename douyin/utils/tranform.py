@@ -1,4 +1,4 @@
-from douyin.structure import Video, User, Music
+from douyin.structure import Video, User, Music, Address
 from douyin.utils.common import first, parse_datetime
 
 
@@ -45,6 +45,7 @@ def data_to_video(data):
     play_url = get_video_url(data.get('video', {}).get('play_addr', {}).get('url_list'))
     author = data_to_user(data.get('author', {}))
     music = data_to_music(data.get('music', {}))
+    address = data_to_address(data.get('poi_info', {}))
     return Video(
         id=id,
         desc=desc,
@@ -59,8 +60,9 @@ def data_to_video(data):
         cover_url=cover_url,
         play_url=play_url,
         author=author,
-        music=music
-    )
+        music=music,
+        address=address
+    ) if id else None
 
 
 def data_to_music(data):
@@ -82,7 +84,7 @@ def data_to_music(data):
         owner_id=owner_id,
         owner_name=owner_name,
         cover_url=cover_url
-    )
+    ) if id else None
 
 
 def data_to_user(data):
@@ -112,4 +114,30 @@ def data_to_user(data):
         verify_info=verify_info,
         create_time=create_time,
         birthday=birthday
-    )
+    ) if id else None
+
+
+def data_to_address(data):
+    id = data.get('poi_id')
+    address_info = data.get('address_info', {})
+    province = address_info.get('province')
+    city = address_info.get('city')
+    district = address_info.get('district')
+    full = address_info.get('simple_addr')
+    address = address_info.get('address')
+    postal_code = data.get('type_code')
+    longitude = data.get('longitude')
+    latitude = data.get('latitude')
+    place = data.get('poi_name')
+    return Address(
+        id=id,
+        province=province,
+        city=city,
+        district=district,
+        address=address,
+        full=full,
+        postal_code=postal_code,
+        longitude=longitude,
+        latitude=latitude,
+        place=place
+    ) if id else None
