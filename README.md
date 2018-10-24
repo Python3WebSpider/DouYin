@@ -1,6 +1,6 @@
 # Douyin
 
-Api of douyin for humans.
+Api of douyin app for humans.
 
 ## Installation
 
