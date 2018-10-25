@@ -2,7 +2,6 @@ from os.path import join, exists
 from os import makedirs
 import requests
 from douyin.handlers import Handler
-from mimetypes import guess_extension
 from douyin.utils.type import mime_to_ext
 
 

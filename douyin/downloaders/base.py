@@ -1,5 +1,3 @@
-from douyin.structures import *
-from douyin.handlers import Handler
 from tqdm import tqdm
 
 
@@ -62,3 +60,7 @@ class Downloader(object):
         """
         data = data if isinstance(data, list) else [data]
         self.process_items(data)
+        
+        
+        
+    
