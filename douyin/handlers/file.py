@@ -2,6 +2,8 @@ from os.path import join, exists
 from os import makedirs
 import requests
 from douyin.handlers import Handler
+from mimetypes import guess_extension
+from douyin.utils.type import mime_to_ext
 
 
 class FileHandler(Handler):
@@ -24,8 +26,10 @@ class FileHandler(Handler):
         :param kwargs:
         :return:
         """
-        full_path = join(self.folder, name)
         kwargs.update({'verify': False})
         with requests.get(url, **kwargs) as response:
+            extension = mime_to_ext(response.headers.get('Content-Type'))
+            full_path = join(self.folder, '%s.%s' % (name, extension))
             with open(full_path, 'wb') as f:
                 f.write(response.content)
+            print('Downloaded file to', full_path)

@@ -1,9 +1,9 @@
 from douyin.config import hot_energy_url
 from douyin.structures import HotEnergy
 from douyin.utils import fetch
+from douyin.utils.common import parse_datetime
+from douyin.utils.tranform import data_to_video
 
-
-# todo
 
 def energy():
     """
@@ -12,8 +12,12 @@ def energy():
     """
     result = fetch(hot_energy_url)
     # process json data
-    active_time = result.get('active_time')
+    active_time = parse_datetime(result.get('active_time'))
     video_list = result.get('aweme_list', [])
-    data = [{'item': item.get('aweme_info'), 'hot_value': item.get('hot_value')} for item in video_list]
+    videos = []
+    for item in video_list:
+        video = data_to_video(item.get('aweme_info'))
+        video.hot_count = item.get('hot_value')
+        videos.append(video)
     # construct HotEnergy object and return
-    return HotEnergy(active_time=active_time, data=data)
+    return HotEnergy(active_time=active_time, data=videos)

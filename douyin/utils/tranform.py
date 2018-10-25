@@ -8,7 +8,7 @@ def get_video_url(array):
     :param array:
     :return:
     """
-    if isinstance(array, list) and len(array) > 1:
+    if isinstance(array, list) and len(array) >= 1:
         return array[-1]
     return None
 
@@ -19,7 +19,7 @@ def get_music_url(array):
     :param array:
     :return:
     """
-    if isinstance(array, list) and len(array) > 1:
+    if isinstance(array, list) and len(array) >= 1:
         return array[-1]
     return None
 

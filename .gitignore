@@ -5,6 +5,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 .idea/
+videos/
+musics/
 scores/
 # C extensions
 *.so

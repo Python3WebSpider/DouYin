@@ -1,8 +1,8 @@
 from douyin.config import hot_music_url
 from douyin.structures import HotMusic
 from douyin.utils import fetch
-
-# todo
+from douyin.utils.common import parse_datetime
+from douyin.utils.tranform import data_to_music
 
 
 def music():
@@ -12,8 +12,13 @@ def music():
     """
     result = fetch(hot_music_url)
     # process json data
-    active_time = result.get('active_time')
-    video_list = result.get('music_list', [])
-    data = [{'item': item.get('music_info'), 'hot_value': item.get('hot_value')} for item in video_list]
-    # construct HotMusic object and return
-    return HotMusic(active_time=active_time, data=data)
+    active_time = parse_datetime(result.get('active_time'))
+    # video_list = result.get('music_list', [])
+    musics = []
+    music_list = result.get('music_list', [])
+    for item in music_list:
+        music = data_to_music(item.get('music_info', {}))
+        music.hot_count = item.get('hot_value')
+        musics.append(music)
+        # construct HotMusic object and return
+    return HotMusic(active_time=active_time, data=musics)

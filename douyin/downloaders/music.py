@@ -1,9 +1,9 @@
-from douyin.structures import Video
+from douyin.structures import Music
 from douyin.handlers import Handler
 from douyin.downloaders import Downloader
 
 
-class VideoDownloader(Downloader):
+class MusicDownloader(Downloader):
     
     def process_item(self, obj):
         """
@@ -11,7 +11,7 @@ class VideoDownloader(Downloader):
         :param obj: single obj
         :return:
         """
-        if isinstance(obj, Video):
+        if isinstance(obj, Music):
             print('\nDownloading', obj, '...')
             for handler in self.handlers:
                 if isinstance(handler, Handler):
