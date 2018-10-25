@@ -5,14 +5,14 @@ from douyin.downloaders import Downloader
 
 class MusicDownloader(Downloader):
     
-    def process_item(self, obj):
+    async def process_item(self, obj):
         """
         process item
         :param obj: single obj
         :return:
         """
         if isinstance(obj, Music):
-            print('\nDownloading', obj, '...')
+            print('Downloading', obj, '...')
             for handler in self.handlers:
                 if isinstance(handler, Handler):
-                    handler.process(obj.play_url, obj.id)
+                    await handler.process(obj.play_url, obj.id)

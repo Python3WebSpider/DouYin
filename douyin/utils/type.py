@@ -36,7 +36,9 @@ mimes_map = {
     'mp3': 'audio/mpeg',
     'ogg': 'audio/ogg',
     'qt': 'video/quicktime',
+    'mp4': 'video/mp4',
     'mov': 'video/quicktime',
+    'wav': 'audio/x-wav',
     
     # adobe
     'pdf': 'application/pdf',

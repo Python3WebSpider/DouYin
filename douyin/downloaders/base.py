@@ -1,14 +1,17 @@
 from tqdm import tqdm
+import asyncio
+import math
 
 
 class Downloader(object):
     
-    def __init__(self, handlers=[]):
+    def __init__(self, handlers=[], batch=10):
         """
         init attributes
         :param handlers:
         """
         self.handlers = handlers
+        self.batch = batch
     
     def add_handler(self, handler):
         """
@@ -33,7 +36,14 @@ class Downloader(object):
         """
         return self.handlers
     
-    def process_item(self, obj):
+    def update_progress(self, _):
+        """
+        update progress bar
+        :return:
+        """
+        self.bar.update(1)
+    
+    async def process_item(self, obj):
         """
         process item
         :param obj: single obj
@@ -47,10 +57,23 @@ class Downloader(object):
         :param objs: objs
         :return:
         """
-        with tqdm(total=len(objs)) as pbar:
-            for obj in objs:
-                self.process_item(obj)
-                pbar.update(1)
+        # define progress bar
+        with tqdm(total=len(objs)) as self.bar:
+            # init event loop
+            loop = asyncio.get_event_loop()
+            # get num of batches
+            total_step = int(math.ceil(len(objs) / self.batch))
+            # for every batch
+            for step in range(total_step):
+                start, end = step * self.batch, (step + 1) * self.batch
+                print('Downloading %d-%d of files' % (start + 1, end))
+                # get batch of objs
+                objs_batch = objs[start: end]
+                # define tasks and run loop
+                tasks = [asyncio.ensure_future(self.process_item(obj)) for obj in objs_batch]
+                for task in tasks:
+                    task.add_done_callback(self.update_progress)
+                loop.run_until_complete(asyncio.wait(tasks))
     
     def download(self, data):
         """
@@ -60,7 +83,3 @@ class Downloader(object):
         """
         data = data if isinstance(data, list) else [data]
         self.process_items(data)
-        
-        
-        
-    
