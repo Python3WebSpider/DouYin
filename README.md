@@ -1,4 +1,4 @@
-# Douyin
+# DouYin API
 
 Api of douyin app for humans.
 
