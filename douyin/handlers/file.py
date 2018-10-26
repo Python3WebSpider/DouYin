@@ -27,6 +27,7 @@ class FileHandler(Handler):
         """
         print('Downloading', obj, '...')
         kwargs.update({'ssl': False})
+        kwargs.update({'timeout': 10})
         async with aiohttp.ClientSession() as session:
             async with session.get(obj.play_url, **kwargs) as response:
                 if response.status == 200:
