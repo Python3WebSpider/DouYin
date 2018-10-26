@@ -67,7 +67,7 @@ class Downloader(object):
             # for every batch
             for step in range(total_step):
                 start, end = step * self.batch, (step + 1) * self.batch
-                print('Downloading %d-%d of files' % (start + 1, end))
+                print('Processing %d-%d of files' % (start + 1, end))
                 # get batch of objs
                 objs_batch = objs[start: end]
                 # define tasks and run loop
@@ -85,6 +85,7 @@ class Downloader(object):
         if isinstance(inputs, types.GeneratorType):
             temps = []
             for result in inputs:
+                print('Processing', result, '...')
                 temps.append(result)
                 if len(temps) == self.batch:
                     self.process_items(temps)
