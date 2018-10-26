@@ -1,4 +1,3 @@
-# url = 'https://aweme.snssdk.com/aweme/v1/hot/search/list/?ac=WIFI&iid=46961748949&device_id=58097798464&os_api=18&app_name=aweme&channel=App%20Store&idfa=B6B7BF1B-AADD-42E6-83AB-D29C93620305&device_platform=iphone&build_number=29101&vid=5A56818A-EC4B-4C9B-843F-881E99603F5A&openudid=825a48a41a70c4182b21cc442993c6bf6f1ed6e6&device_type=iPhone9,2&app_version=2.9.1&version_code=2.9.1&os_version=12.0&screen_width=1242&aid=1128&pass-region=1&detail_list=1&mas=018fa49f892cef47483e66cfafc93cb60218333ead79ec36a2e727&as=a1958f5c7b791bf03f3994&ts=1540354203'
 import json
 from urllib.parse import urlparse, parse_qs
 
