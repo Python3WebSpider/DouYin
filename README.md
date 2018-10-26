@@ -14,59 +14,62 @@ Here is the sample code:
 
 ```python
 import douyin
+from douyin.structures import Topic, Music
 
-# HotMusic
-result = douyin.hot.music()
-# music objects
-musics = result.data
-# print every music
-for music in musics:
-    print(music)
-
-# define handler and specify folder
-handler = douyin.handlers.FileHandler(folder='./musics')
+# define file handler and specify folder
+file_handler = douyin.handlers.FileHandler(folder='./videos')
+# define mongodb handler
+mongo_handler = douyin.handlers.MongoHandler()
 # define downloader
-downloader = douyin.downloaders.MusicDownloader([handler])
-# download musics
-downloader.download(musics)
+downloader = douyin.downloaders.VideoDownloader([mongo_handler, file_handler])
 
-# HotVideo
-result = douyin.hot.video()
-# video objects
-videos = result.data
-# print every video
-for video in videos:
-    print(video)
-
-# define handler and specify folder
-handler = douyin.handlers.FileHandler(folder='./videos')
-# define downloader
-downloader = douyin.downloaders.VideoDownloader([handler])
-# download videos
-downloader.download(videos)
+for result in douyin.hot.trend():
+    for item in result.data:
+        # download videos of topic/music for 200 max per
+        if isinstance(item, Topic):
+            print('Item', item)
+            downloader.download(item.videos(max=30))
+        if isinstance(item, Music):
+            print('Item', item)
+            downloader.download(item.videos(max=30))
 ```
 
 then you can get:
 
 ```
-<Video: <6613646708372933902, #哈士奇 #捏一下就>>
-<User: <1550299675, 二哈撒手没的日常>>
-<Music: <6574318393246092046, 断线>>
-<Address: <B02000JML4, 太湖>>
-<Video: <6613934804712819971, #室友 快艾特室友们>>
-<User: <ACE_00, ACE_共犯>>
-<Music: <6607667275321314051, @是你的很美味创作的原声>>
-None
-0%|                                                    | 0/20 [00:00<?, ?it/s]
-Downloading <Video: <6613646708372933902, #哈士奇 #捏一下就>> ...
-  5%|██▏                                         | 1/20 [00:01<00:19,  1.02s/it]
-Downloading <Video: <6613934804712819971, #室友 快艾特室友们>> ...
- 10%|████▍                                       | 2/20 [00:05<00:35,  1.97s/it]
-Downloading <Video: <6614442537929149703, 哈哈哈😄😂够我笑一年>> ...
- 15%|██████▌                                     | 3/20 [00:07<00:34,  2.03s/it]
-Downloading <Video: <6613545646597082372, #这可能是你从没听过>> ...
- 20%|████████▊                                   | 4/20 [00:09<00:35,  2.20s/it]
-Downloading <Video: <6614086376252001544, 余生有你 请多指教@>> ...
+Item <Topic: <1565818716518401, panama>>
+Processing <Video: <6616517521098935565, 真香#panama>> ...
+Processing <Video: <6500385230921141518, 哈哈哈哈哈>> ...
+...
+Processing <Video: <6479958542747962637, 👅ก่อนกินข้>> ...
+Processing <Video: <6473811426107460878, 😁>> ...
+  0%|                                                      | 0/10 [00:00<?, ?it/s]Processing 1-10 of files
+Processing <Video: <6616517521098935565, 真香#panama>> ...
+Saving <Video: <6616517521098935565, 真香#panama>> to mongodb...
+Processing <Video: <6500385230921141518, 哈哈哈哈哈>> ...
+Saving <Video: <6500385230921141518, 哈哈哈哈哈>> to mongodb...
+Processing <Video: <6562690160868199693, 皇城相府版C哩C哩跨>> ...
+....
+Downloading <Video: <6580510322468064526, 第二遍 后面的小哥哥>> ...
+Saved <Video: <6479958542747962637, 👅ก่อนกินข้>> to mongodb successfully
+Downloading <Video: <6479958542747962637, 👅ก่อนกินข้>> ...
+Saved <Video: <6473811426107460878, 😁>> to mongodb successfully
+Downloading <Video: <6473811426107460878, 😁>> ...
+Downloaded file to ./videos/6580510322468064526.mp4
+ 10%|████▌                                         | 1/10 [00:01<00:16,  1.84s/it]Downloaded file to ./videos/6516746291806997763.mp4
+ 20%|█████████▏                                    | 2/10 [00:01<00:10,  1.33s/it]Downloaded file to ./videos/6473811426107460878.mp4
+Downloaded file to ./videos/6600742831352974596.mp4
+ 40%|██████████████████▍                           | 4/10 [00:02<00:05,  1.03it/s]Downloaded file to ./videos/6484393014599879950.mp4
+ 50%|███████████████████████                       | 5/10 [00:02<00:04,  1.15it/s]Downloaded file to ./videos/6616517521098935565.mp4
+ 60%|███████████████████████████▌                  | 6/10 [00:03<00:03,  1.27it/s]Downloaded file to ./videos/6479958542747962637.mp4
+ 70%|████████████████████████████████▏             | 7/10 [00:03<00:01,  1.68it/s]Downloaded file to ./videos/6472305134377372941.mp4
+ 80%|████████████████████████████████████▊         | 8/10 [00:03<00:00,  2.05it/s]Downloaded file to ./videos/6562690160868199693.mp4
+ 90%|█████████████████████████████████████████▍    | 9/10 [00:04<00:00,  2.27it/s]Downloaded file to ./videos/6500385230921141518.mp4
+100%|█████████████████████████████████████████████| 10/10 [00:04<00:00,  2.33it/s]
 ```
 
-![](https://ws3.sinaimg.cn/large/006tNbRwgy1fwjsl8n4bhj315u17uaei.jpg)
+![](https://ws2.sinaimg.cn/large/006tNbRwgy1fwmad1yh6wj30lf0p3aaf.jpg)
+
+## Examples
+
+See [examples](./examples)
