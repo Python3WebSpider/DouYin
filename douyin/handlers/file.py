@@ -25,6 +25,7 @@ class FileHandler(Handler):
         :param kwargs:
         :return:
         """
+        print('Downloading', obj, '...')
         kwargs.update({'ssl': False})
         async with aiohttp.ClientSession() as session:
             async with session.get(obj.play_url, **kwargs) as response:

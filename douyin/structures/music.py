@@ -1,15 +1,16 @@
+from douyin.structures import Base
 from douyin.utils.fetch import fetch
 from douyin.config import music2video_url, common_headers
-import types
 
 
-class Music(object):
+class Music(Base):
     
     def __init__(self, **kwargs):
         """
         music init args
         :param kwargs:
         """
+        super().__init__()
         self.id = kwargs.get('id')
         self.name = kwargs.get('name')
         self.cover_url = kwargs.get('cover_url')
@@ -38,8 +39,7 @@ class Music(object):
             'music_id': self.id,
             'count': '18',
         }
-        offset = 0
-        count = 0
+        offset, count = 0, 0
         while True:
             # define cursor
             query['cursor'] = str(offset)

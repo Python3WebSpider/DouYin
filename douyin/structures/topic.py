@@ -1,10 +1,12 @@
+from douyin.structures import Base
 from douyin.utils.fetch import fetch
 from douyin.config import topic2video_url, common_headers
 
 
-class Topic(object):
+class Topic(Base):
     
     def __init__(self, **kwargs):
+        super().__init__()
         self.id = kwargs.get('id')
         self.view_count = kwargs.get('view_count')
         self.user_count = kwargs.get('user_count')
@@ -32,8 +34,7 @@ class Topic(object):
             'count': '18',
             'aid': '1129'
         }
-        offset = 0
-        count = 0
+        offset, count = 0, 0
         while True:
             # define cursor
             query['cursor'] = str(offset)

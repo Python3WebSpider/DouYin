@@ -1,6 +1,10 @@
-class User(object):
+from douyin.structures import Base
+
+
+class User(Base):
     
     def __init__(self, **kwargs):
+        super().__init__()
         self.id = kwargs.get('id')
         self.gender = kwargs.get('gender')
         self.name = kwargs.get('name')

@@ -1,6 +1,10 @@
-class Video():
+from douyin.structures import Base
+
+
+class Video(Base):
     
     def __init__(self, **kwargs):
+        super().__init__()
         self.id = kwargs.get('id')
         self.desc = kwargs.get('desc')
         self.author = kwargs.get('author')
@@ -23,4 +27,7 @@ class Video():
         video to str
         :return: str
         """
-        return '<Video: <%s, %s>>' % (self.id, self.desc[:10].strip())
+        return '<Video: <%s, %s>>' % (self.id, self.desc[:10].strip() if self.desc else None)
+    
+    
+    

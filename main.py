@@ -27,9 +27,10 @@ import douyin
 #     print(video)
 #
 # # define handler and specify folder
-handler = douyin.handlers.FileHandler(folder='./videos')
+# file_handler = douyin.handlers.FileHandler(folder='./videos')
+mongo_handler = douyin.handlers.MongoHandler()
 # # define downloader
-downloader = douyin.downloaders.VideoDownloader([handler])
+downloader = douyin.downloaders.VideoDownloader([mongo_handler])
 # # download videos
 # downloader.download(videos)
 # from douyin.structures import Topic
@@ -40,12 +41,7 @@ for result in douyin.hot.trend():
     for item in result.data:
         if isinstance(item, Topic):
             print('Item', item)
-            downloader.download(item.videos())
-        #     print(item)
-        #     for video in item.videos():
-        #         print(video)
+            downloader.download(item.videos(max=100))
         if isinstance(item, Music):
             print('Item', item)
-            # for video in item.videos():
-            #     print(video)
-            downloader.download(item.videos())
+            downloader.download(item.videos(max=100))

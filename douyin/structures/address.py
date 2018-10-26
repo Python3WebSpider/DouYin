@@ -1,6 +1,10 @@
-class Address():
+from douyin.structures import Base
+
+
+class Address(Base):
     
     def __init__(self, **kwargs):
+        super().__init__()
         self.id = kwargs.get('id')
         self.province = kwargs.get('province')
         self.city = kwargs.get('city')

@@ -12,8 +12,7 @@ class VideoDownloader(Downloader):
         :return:
         """
         if isinstance(obj, Video):
-            print('Downloading', obj, '...')
+            print('Processing', obj, '...')
             for handler in self.handlers:
                 if isinstance(handler, Handler):
                     await handler.process(obj)
-            
