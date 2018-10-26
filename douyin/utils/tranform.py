@@ -1,4 +1,4 @@
-from douyin.structures import Video, User, Music, Address
+from douyin.structures import Video, User, Music, Address, Topic
 from douyin.utils.common import first, parse_datetime
 
 
@@ -118,6 +118,11 @@ def data_to_user(data):
 
 
 def data_to_address(data):
+    """
+    transfer data to address object
+    :param data:
+    :return:
+    """
     id = data.get('poi_id')
     address_info = data.get('address_info', {})
     province = address_info.get('province')
@@ -140,4 +145,24 @@ def data_to_address(data):
         longitude=longitude,
         latitude=latitude,
         place=place
+    ) if id else None
+
+
+def data_to_topic(data):
+    """
+    transfer data to topic object
+    :param data:
+    :return:
+    """
+    id = data.get('cid')
+    view_count = data.get('view_count')
+    user_count = data.get('user_count')
+    name = data.get('cha_name')
+    desc = data.get('desc')
+    return Topic(
+        id=id,
+        view_count=view_count,
+        user_count=user_count,
+        name=name,
+        desc=desc
     ) if id else None

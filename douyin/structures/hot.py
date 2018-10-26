@@ -1,6 +1,7 @@
 import collections
 
-HotSearch = collections.namedtuple('HotSearch', ['active_time', 'data'])
-HotVideo = collections.namedtuple('HotVideo', ['active_time', 'data'])
-HotEnergy = collections.namedtuple('HotVideo', ['active_time', 'data'])
-HotMusic = collections.namedtuple('HotMusic', ['active_time', 'data'])
+HotSearch = collections.namedtuple('HotSearch', ['datetime', 'data'])
+HotVideo = collections.namedtuple('HotVideo', ['datetime', 'data'])
+HotEnergy = collections.namedtuple('HotVideo', ['datetime', 'data'])
+HotMusic = collections.namedtuple('HotMusic', ['datetime', 'data'])
+HotTrend = collections.namedtuple('HotTrend', ['datetime', 'data'])

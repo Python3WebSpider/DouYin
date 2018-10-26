@@ -12,7 +12,7 @@ def music():
     """
     result = fetch(hot_music_url)
     # process json data
-    active_time = parse_datetime(result.get('active_time'))
+    datetime = parse_datetime(result.get('active_time'))
     # video_list = result.get('music_list', [])
     musics = []
     music_list = result.get('music_list', [])
@@ -21,4 +21,4 @@ def music():
         music.hot_count = item.get('hot_value')
         musics.append(music)
         # construct HotMusic object and return
-    return HotMusic(active_time=active_time, data=musics)
+    return HotMusic(datetime=datetime, data=musics)

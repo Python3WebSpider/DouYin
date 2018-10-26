@@ -12,7 +12,7 @@ def energy():
     """
     result = fetch(hot_energy_url)
     # process json data
-    active_time = parse_datetime(result.get('active_time'))
+    datetime = parse_datetime(result.get('active_time'))
     video_list = result.get('aweme_list', [])
     videos = []
     for item in video_list:
@@ -20,4 +20,4 @@ def energy():
         video.hot_count = item.get('hot_value')
         videos.append(video)
     # construct HotEnergy object and return
-    return HotEnergy(active_time=active_time, data=videos)
+    return HotEnergy(datetime=datetime, data=videos)
