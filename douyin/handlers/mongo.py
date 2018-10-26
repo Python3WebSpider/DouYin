@@ -5,16 +5,15 @@ from douyin.structures import *
 
 class MongoHandler(Handler):
     
-    def __init__(self, host='localhost', port=27017, username=None, password=None, db='douyin'):
+    def __init__(self, conn_uri=None, db='douyin'):
         """
         init save folder
         :param folder:
         """
         super().__init__()
-        # self.folder = folder
-        # if not exists(self.folder):
-        #     makedirs(self.folder)
-        self.client = AsyncIOMotorClient(host=host, port=port, username=username, password=password)
+        if not conn_uri:
+            conn_uri = 'localhost'
+        self.client = AsyncIOMotorClient(conn_uri)
         self.db = self.client[db]
     
     async def process(self, obj, **kwargs):

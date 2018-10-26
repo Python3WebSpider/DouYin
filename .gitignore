@@ -16,6 +16,7 @@ debug.log
 # Distribution / packaging
 .Python
 build/
+douyin-*/
 examples/checkpoints/
 examples/events/
 develop-eggs/
