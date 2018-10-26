@@ -15,4 +15,5 @@ class VideoDownloader(Downloader):
             print('Downloading', obj, '...')
             for handler in self.handlers:
                 if isinstance(handler, Handler):
-                    await handler.process(obj.play_url, obj.id)
+                    await handler.process(obj)
+            

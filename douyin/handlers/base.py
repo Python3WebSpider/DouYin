@@ -1,4 +1,4 @@
 class Handler(object):
     
-    def process(self, url, name):
+    def process(self, obj, **kwargs):
         raise NotImplementedError

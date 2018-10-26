@@ -39,11 +39,13 @@ for result in douyin.hot.trend():
     print(result)
     for item in result.data:
         if isinstance(item, Topic):
+            print('Item', item)
             downloader.download(item.videos())
         #     print(item)
         #     for video in item.videos():
         #         print(video)
-        # if isinstance(item, Music):
-        #     print(item)
-        #     for video in item.videos():
-        #         print(video)
+        if isinstance(item, Music):
+            print('Item', item)
+            # for video in item.videos():
+            #     print(video)
+            downloader.download(item.videos())
