@@ -18,12 +18,14 @@ class Topic(object):
         """
         return '<Topic: <%s, %s>>' % (self.id, self.name)
     
-    def videos(self):
+    def videos(self, max=None):
         """
         get videos of topic
         :return:
         """
         from douyin.utils.tranform import data_to_video
+        if max and not isinstance(max, int):
+            raise RuntimeError('`max` param must be int')
         query = {
             'device_id': '33333333',
             'ch_id': self.id,
@@ -31,6 +33,7 @@ class Topic(object):
             'aid': '1129'
         }
         offset = 0
+        count = 0
         while True:
             # define cursor
             query['cursor'] = str(offset)
@@ -38,7 +41,10 @@ class Topic(object):
             aweme_list = result.get('aweme_list', [])
             for item in aweme_list:
                 video = data_to_video(item)
+                count += 1
                 yield video
+                if max and count >= max:
+                    break
             # next page
             if result.get('has_more'):
                 offset += 18

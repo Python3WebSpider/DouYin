@@ -1,5 +1,6 @@
 from douyin.utils.fetch import fetch
 from douyin.config import music2video_url, common_headers
+import types
 
 
 class Music(object):
@@ -24,11 +25,13 @@ class Music(object):
         """
         return '<Music: <%s, %s>>' % (self.id, self.name)
     
-    def videos(self):
+    def videos(self, max=None):
         """
         get videos of topic
         :return:
         """
+        if max and not isinstance(max, int):
+            raise RuntimeError('`max` param must be int')
         from douyin.utils.tranform import data_to_video
         query = {
             'device_id': '33333333',
@@ -36,6 +39,7 @@ class Music(object):
             'count': '18',
         }
         offset = 0
+        count = 0
         while True:
             # define cursor
             query['cursor'] = str(offset)
@@ -45,7 +49,10 @@ class Music(object):
             aweme_list = result.get('aweme_list', [])
             for item in aweme_list:
                 video = data_to_video(item)
+                count += 1
                 yield video
+                if max and count >= max:
+                    break
             # next page
             if result.get('has_more'):
                 offset += 18
