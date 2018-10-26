@@ -1,12 +1,10 @@
 from douyin.utils import fetch
-from douyin.config import hot_trend_url
+from douyin.config import hot_trend_url, common_headers
 from douyin.utils.tranform import data_to_music, data_to_topic
 from douyin.structures.hot import HotTrend
 from douyin.utils.common import parse_datetime
 
-headers = {
-    'User-Agent': 'Aweme 2.9.1 rv:29101 (iPhone; iOS 12.0; zh_CN) Cronet',
-}
+
 
 query = {
     'version_code': '2.9.1',
@@ -22,7 +20,7 @@ def trend():
     offset = 0
     while True:
         query['cursor'] = str(offset)
-        result = fetch(hot_trend_url, headers=headers, params=query, verify=False)
+        result = fetch(hot_trend_url, headers=common_headers, params=query, verify=False)
         category_list = result.get('category_list')
         datetime = parse_datetime(result.get('extra', {}).get('now'))
         final = []

@@ -1,3 +1,7 @@
+from douyin.utils.fetch import fetch
+from douyin.config import music2video_url, common_headers
+
+
 class Music(object):
     
     def __init__(self, **kwargs):
@@ -19,3 +23,31 @@ class Music(object):
         :return:
         """
         return '<Music: <%s, %s>>' % (self.id, self.name)
+    
+    def videos(self):
+        """
+        get videos of topic
+        :return:
+        """
+        from douyin.utils.tranform import data_to_video
+        query = {
+            'device_id': '33333333',
+            'music_id': self.id,
+            'count': '18',
+        }
+        offset = 0
+        while True:
+            # define cursor
+            query['cursor'] = str(offset)
+            print(query)
+            result = fetch(music2video_url, params=query, headers=common_headers, verify=False)
+            print(result)
+            aweme_list = result.get('aweme_list', [])
+            for item in aweme_list:
+                video = data_to_video(item)
+                yield video
+            # next page
+            if result.get('has_more'):
+                offset += 18
+            else:
+                break
