@@ -1,6 +1,7 @@
 from tqdm import tqdm
 import asyncio
 import math
+import types
 
 
 class Downloader(object):
@@ -75,11 +76,19 @@ class Downloader(object):
                     task.add_done_callback(self.update_progress)
                 loop.run_until_complete(asyncio.wait(tasks))
     
-    def download(self, data):
+    def download(self, inputs):
         """
         download video or video lists
         :param data:
         :return:
         """
-        data = data if isinstance(data, list) else [data]
-        self.process_items(data)
+        if isinstance(inputs, types.GeneratorType):
+            temps = []
+            for result in inputs:
+                temps.append(result)
+                if len(temps) == self.batch:
+                    self.process_items(temps)
+                    temps = []
+        else:
+            inputs = inputs if isinstance(inputs, list) else [inputs]
+            self.process_items(inputs)

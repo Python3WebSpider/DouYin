@@ -1,6 +1,7 @@
 #!pip install douyin
 
 import douyin
+
 #
 # # HotMusic
 # result = douyin.hot.music()
@@ -26,9 +27,9 @@ import douyin
 #     print(video)
 #
 # # define handler and specify folder
-# handler = douyin.handlers.FileHandler(folder='./videos')
+handler = douyin.handlers.FileHandler(folder='./videos')
 # # define downloader
-# downloader = douyin.downloaders.VideoDownloader([handler])
+downloader = douyin.downloaders.VideoDownloader([handler])
 # # download videos
 # downloader.download(videos)
 # from douyin.structures import Topic
@@ -38,9 +39,10 @@ for result in douyin.hot.trend():
     print(result)
     for item in result.data:
         if isinstance(item, Topic):
-            print(item)
-            for video in item.videos():
-                print(video)
+            downloader.download(item.videos())
+        #     print(item)
+        #     for video in item.videos():
+        #         print(video)
         # if isinstance(item, Music):
         #     print(item)
         #     for video in item.videos():
