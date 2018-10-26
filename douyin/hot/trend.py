@@ -32,5 +32,5 @@ def trend():
                 final.append(data_to_topic(item.get('challenge_info', {})))
             if item.get('desc') == '热门音乐':
                 final.append(data_to_music(item.get('music_info', {})))
-        yield HotTrend(datetime=datetime, data=final)
+        yield HotTrend(datetime=datetime, data=final, offset=offset, count=int(query.get('count')))
         offset += 10

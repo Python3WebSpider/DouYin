@@ -6,3 +6,10 @@ class Topic(object):
         self.user_count = kwargs.get('user_count')
         self.name = kwargs.get('name')
         self.desc = kwargs.get('desc')
+    
+    def __repr__(self):
+        """
+        music to str
+        :return:
+        """
+        return '<Topic: <%s, %s>>' % (self.id, self.name)
