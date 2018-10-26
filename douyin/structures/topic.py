@@ -28,14 +28,13 @@ class Topic(object):
             'device_id': '33333333',
             'ch_id': self.id,
             'count': '18',
+            'aid': '1129'
         }
         offset = 0
         while True:
             # define cursor
             query['cursor'] = str(offset)
-            print(query)
             result = fetch(topic2video_url, params=query, headers=common_headers, verify=False)
-            print(result)
             aweme_list = result.get('aweme_list', [])
             for item in aweme_list:
                 video = data_to_video(item)

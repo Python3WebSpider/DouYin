@@ -55,10 +55,69 @@ import requests
 #     # "ts": "1540535761"
 # }
 
+# query = {
+#     # "ac": "WIFI",
+#     # "iid": "46961748949",
+#     "device_id": "33333333",
+#     # "os_api": "18",
+#     # "app_name": "aweme",
+#     # "channel": "App Store",
+#     # "idfa": "B6B7BF1B-AADD-42E6-83AB-D29C93620305",
+#     # "device_platform": "iphone",
+#     # "build_number": "29101",
+#     # "vid": "5A56818A-EC4B-4C9B-843F-881E99603F5A",
+#     # "openudid": "825a48a41a70c4182b21cc442993c6bf6f1ed6e6",
+#     # "device_type": "iPhone9,2",
+#     # "app_version": "2.9.1",
+#     # "version_code": "2.9.1",
+#     # "os_version": "12.0",
+#     # "screen_width": "1242",
+#     # "aid": "1128",
+#     # "pass-region": "1",
+#     "cursor": "0",
+#     "music_id": "6606196836371794691",
+#     # "pull_type": "2",
+#     "count": "11",
+#     # "type": "6",
+#     # "mas": "0143c9f3d621b358454717211b3d5b91be242eaad18243a010d6a8",
+#     # "as": "a1756b5dab96bb15627918",
+#     # "ts": "1540535659"
+# }
+
+# query = {
+#     "ac": "WIFI",
+#     "iid": "46961748949",
+#     "device_id": "58097798464",
+#     "os_api": "18",
+#     "app_name": "aweme",
+#     "channel": "App Store",
+#     "idfa": "B6B7BF1B-AADD-42E6-83AB-D29C93620305",
+#     "device_platform": "iphone",
+#     "build_number": "29101",
+#     "vid": "5A56818A-EC4B-4C9B-843F-881E99603F5A",
+#     "openudid": "825a48a41a70c4182b21cc442993c6bf6f1ed6e6",
+#     "device_type": "iPhone9,2",
+#     "app_version": "2.9.1",
+#     "version_code": "2.9.1",
+#     "os_version": "12.0",
+#     "screen_width": "1242",
+#     "aid": "1128",
+#     "pass-region": "1",
+#     "query_type": "0",
+#     "cursor": "72",
+#     "ch_id": "1579168686354445",
+#     "count": "18",
+#     "pull_type": "2",
+#     "type": "5",
+#     "mas": "01fa6c53471c45dc2f83db17c2c208d492d353529e1eae812f2728",
+#     "as": "a1656b8d763eabc5a28997",
+#     "ts": "1540535782"
+# }
+
 query = {
     # "ac": "WIFI",
     # "iid": "46961748949",
-    "device_id": "33333333",
+    "device_id": "222222",
     # "os_api": "18",
     # "app_name": "aweme",
     # "channel": "App Store",
@@ -72,16 +131,17 @@ query = {
     # "version_code": "2.9.1",
     # "os_version": "12.0",
     # "screen_width": "1242",
-    # "aid": "1128",
+    "aid": "1129",
     # "pass-region": "1",
+    # "query_type": "0",
     "cursor": "0",
-    "music_id": "6606196836371794691",
+    "ch_id": "1614257803840525",
+    "count": "18",
     # "pull_type": "2",
-    "count": "11",
-    # "type": "6",
-    # "mas": "0143c9f3d621b358454717211b3d5b91be242eaad18243a010d6a8",
-    # "as": "a1756b5dab96bb15627918",
-    # "ts": "1540535659"
+    # "type": "5",
+    # "mas": "019e89de1c6917f6ff17e5a3fb15e9f4a042dc4b112dd70bc304ee",
+    # "as": "a115357dd5d06b22130853",
+    # "ts": "1540575749"
 }
 
 headers = {
@@ -93,7 +153,7 @@ headers = {
 
 # base_url = 'https://api.amemv.com/aweme/v1/category/list/'
 
-base_url = 'https://api.amemv.com/aweme/v1/music/aweme/'
+base_url = 'https://api.amemv.com/aweme/v1/challenge/aweme/'
 
 response = requests.get(base_url, params=query, verify=False, headers=headers)
 print(response.url)

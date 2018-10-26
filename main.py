@@ -37,11 +37,11 @@ from douyin.structures import Topic, Music
 for result in douyin.hot.trend():
     print(result)
     for item in result.data:
-        # if isinstance(item, Topic):
-        #     print(item)
-        #     for video in item.videos():
-        #         print(video)
-        if isinstance(item, Music):
+        if isinstance(item, Topic):
             print(item)
             for video in item.videos():
                 print(video)
+        # if isinstance(item, Music):
+        #     print(item)
+        #     for video in item.videos():
+        #         print(video)
