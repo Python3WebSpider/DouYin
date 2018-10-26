@@ -4,6 +4,10 @@ from douyin.structures import Base
 class Address(Base):
     
     def __init__(self, **kwargs):
+        """
+        init address object
+        :param kwargs:
+        """
         super().__init__()
         self.id = kwargs.get('id')
         self.province = kwargs.get('province')

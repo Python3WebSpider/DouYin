@@ -4,6 +4,10 @@ from douyin.structures import Base
 class User(Base):
     
     def __init__(self, **kwargs):
+        """
+        init user object
+        :param kwargs:
+        """
         super().__init__()
         self.id = kwargs.get('id')
         self.gender = kwargs.get('gender')

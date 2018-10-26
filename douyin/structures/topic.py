@@ -6,6 +6,10 @@ from douyin.config import topic2video_url, common_headers
 class Topic(Base):
     
     def __init__(self, **kwargs):
+        """
+        init topic object
+        :param kwargs:
+        """
         super().__init__()
         self.id = kwargs.get('id')
         self.view_count = kwargs.get('view_count')

@@ -5,7 +5,7 @@ from douyin.structures.hot import HotTrend
 from douyin.utils.common import parse_datetime
 
 
-
+# define trend query params
 query = {
     'version_code': '2.9.1',
     'count': '10',

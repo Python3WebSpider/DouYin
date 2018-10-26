@@ -4,6 +4,10 @@ from douyin.structures import Base
 class Video(Base):
     
     def __init__(self, **kwargs):
+        """
+        init video object
+        :param kwargs:
+        """
         super().__init__()
         self.id = kwargs.get('id')
         self.desc = kwargs.get('desc')
