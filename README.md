@@ -27,12 +27,7 @@ downloader = douyin.downloaders.VideoDownloader([mongo_handler, video_file_handl
 for result in douyin.hot.trend():
     for item in result.data:
         # download videos of topic/music for 100 max per
-        if isinstance(item, Topic):
-            print('Item', item)
-            downloader.download(item.videos(max=100))
-        if isinstance(item, Music):
-            print('Item', item)
-            downloader.download(item.videos(max=120))
+        downloader.download(item.videos(max=100))
 ```
 
 then you can get:
