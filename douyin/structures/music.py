@@ -43,16 +43,14 @@ class Music(Base):
         while True:
             # define cursor
             query['cursor'] = str(offset)
-            print(query)
             result = fetch(music2video_url, params=query, headers=common_headers, verify=False)
-            print(result)
             aweme_list = result.get('aweme_list', [])
             for item in aweme_list:
                 video = data_to_video(item)
                 count += 1
                 yield video
                 if max and count >= max:
-                    break
+                    return
             # next page
             if result.get('has_more'):
                 offset += 18

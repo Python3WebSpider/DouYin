@@ -49,7 +49,7 @@ class Topic(Base):
                 count += 1
                 yield video
                 if max and count >= max:
-                    break
+                    return
             # next page
             if result.get('has_more'):
                 offset += 18

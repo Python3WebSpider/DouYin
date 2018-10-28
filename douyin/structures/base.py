@@ -1,4 +1,5 @@
 import datetime
+from copy import deepcopy
 
 
 class Base():
@@ -10,7 +11,7 @@ class Base():
         """
         from douyin.structures import Video, Music, User, Topic, Address
         # transfer object to dict
-        d = self.__dict__
+        d = deepcopy(self.__dict__)
         # iterate every attribute
         for k, v in d.items():
             if not v:

@@ -17,7 +17,7 @@ class FileHandler(Handler):
         if not exists(self.folder):
             makedirs(self.folder)
     
-    async def process(self, obj, **kwargs):
+    async def _process(self, obj, **kwargs):
         """
         download to file
         :param url: resource url
@@ -38,3 +38,12 @@ class FileHandler(Handler):
                     print('Downloaded file to', full_path)
                 else:
                     print('Cannot download %s, response status %s' % (obj.id, response.status))
+    
+    async def process(self, obj, **kwargs):
+        """
+        process obj
+        :param obj:
+        :param kwargs:
+        :return:
+        """
+        return await self._process(obj, **kwargs)
