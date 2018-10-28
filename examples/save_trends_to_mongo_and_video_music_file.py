@@ -5,7 +5,7 @@ from douyin.structures import Topic, Music
 video_file_handler = douyin.handlers.VideoFileHandler(folder='./videos')
 music_file_handler = douyin.handlers.MusicFileHandler(folder='./musics')
 # define mongodb handler
-mongo_handler = douyin.handlers.MongoHandler()
+mongo_handler = douyin.handlers.MongoHandler(conn_uri='localhost')
 # define downloader
 downloader = douyin.downloaders.VideoDownloader([mongo_handler, video_file_handler, music_file_handler])
 
