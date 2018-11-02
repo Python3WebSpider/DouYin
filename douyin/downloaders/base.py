@@ -90,6 +90,7 @@ class Downloader(object):
                 if len(temps) == self.batch:
                     self.process_items(temps)
                     temps = []
+            self.process_item(temps)
         else:
             inputs = inputs if isinstance(inputs, list) else [inputs]
             self.process_items(inputs)
