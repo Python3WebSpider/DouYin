@@ -33,7 +33,7 @@ class Topic(Base):
         if max and not isinstance(max, int):
             raise RuntimeError('`max` param must be int')
         query = {
-            'device_id': '33333333',
+            'device_id': '58097798460',
             'ch_id': self.id,
             'count': '18',
             'aid': '1129'

@@ -10,7 +10,8 @@ music2video_url = 'https://api.amemv.com/aweme/v1/music/aweme/'
 # http
 fetch_timeout = 5
 common_headers = {
-    'User-Agent': 'Aweme 2.9.1 rv:29101 (iPhone; iOS 12.0; zh_CN) Cronet',
+    # 'User-Agent': 'Aweme 2.9.1 rv:29101 (iPhone; iOS 12.0; zh_CN) Cronet',
+    'User-Agent': 'Aweme 3.1.0 rv:31006 (iPhone; iOS 12.0; zh_CN) Cronet'
 }
 
 # retrying
