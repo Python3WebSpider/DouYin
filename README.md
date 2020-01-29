@@ -1,5 +1,7 @@
 # DouYin
 
+注：项目已不可用...
+
 API of DouYin App for humans.
 
 ## Installation
